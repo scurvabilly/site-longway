@@ -1,0 +1,7 @@
+.DS_Store
+.babelrc
+.eslintrc
+.npmrc
+assets/
+dist/**
+node_modules/
