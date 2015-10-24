@@ -2,6 +2,7 @@
 .babelrc
 .eslintrc
 .npmrc
+npm-debug.log
 assets/
 dist/**
 node_modules/
