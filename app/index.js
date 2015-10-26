@@ -1,4 +1,7 @@
 import React from 'react';
-import App from './containers/App';
+import CreateHighlight from './containers/create-highlight';
 
-React.render(<App />, document.getElementById('main'));
+// Bundle CSS
+require("../css/app.css");
+
+React.render(<CreateHighlight />, document.getElementById('create-highlight'));
