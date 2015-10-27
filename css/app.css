@@ -4,23 +4,22 @@ html, body {
     padding: 0;
 }
 
-.container-fill {
+.fill-container {
   width: 100%;
   height: 100%;
 }
 
-#map-container {
+.flex-container {
     position: relative;
     display: flex;
-    height: 100%;
 }
 
-#map {
+#highlight-editor {
     width: 100%;
     background: orange;
 }
 
-#map-controls {
+#highlight-sidebar {
     flex: 0 0 250px;
     background: grey;
 }
