@@ -14,12 +14,11 @@ html, body {
     display: flex;
 }
 
-#highlight-editor {
+#map {
     width: 100%;
-    background: orange;
 }
 
-#highlight-sidebar {
+#map-sidebar {
     flex: 0 0 250px;
-    background: grey;
+    background: orange;
 }

@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 export default class HighlightSidebar extends Component {
   render() {
     return (
-      <aside id='highlight-sidebar'>
+      <aside id='map-sidebar'>
         <ul>
             <li>Item 1</li>
             <li>Item 2</li>
