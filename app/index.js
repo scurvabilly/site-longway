@@ -1,7 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import CreateHighlight from './containers/CreateHighlight';
 
-// Bundle CSS
-require("../css/app.css");
+'use strict';
 
-React.render(<CreateHighlight />, document.getElementById('CreateHighlight'));
+// Bundle CSS
+require('../css/app.css');
+
+ReactDOM.render(<CreateHighlight />, document.getElementById('CreateHighlight'));
