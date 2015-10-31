@@ -15,9 +15,13 @@
   },
   "scripts": {
     "start": "webpack-dev-server --host 0.0.0.0 --port 80",
-    "build": "webpack"
+    "build": "webpack",
+    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test:watch": "npm test -- --watch"
   },
   "devDependencies": {
+    "expect": "^1.12.2",
+    "mocha": "^2.3.3",
     "webpack-dev-server": "^1.12.1"
   }
 }
