@@ -1,10 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CreateSegment from './containers/CreateSegment';
-
-'use strict';
+import { Provider } from 'react-redux';
+import SegmentEditor from './containers/SegmentEditor';
+import configureStore from './store/configureStore';
 
 // Bundle CSS
 require('../css/app.css');
 
-ReactDOM.render(<CreateSegment />, document.getElementById('CreateSegment'));
+// Create the store, our immutable app state
+const store = configureStore();
+
+// Render the top-level component
+ReactDOM.render(
+  <Provider store={store}>
+    <SegmentEditor />
+  </Provider>,
+  document.getElementById('SegmentEditor')
+);
