@@ -11,11 +11,11 @@ class SegmentEditorMap extends Component {
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         onClick={e => addMarker(e.latLng)}>
-        {markers.map((marker) => {
+        {markers.map((marker, i) => {
           return (
             <Marker
               {...marker}
-              onRightclick={() => removeMarker(marker)} />
+              onRightclick={() => removeMarker(i)} />
           );
         })}
       </GoogleMap>

@@ -12,8 +12,8 @@ export function addMarker(pos) {
 /**
  * Remove a marker from the map.
  *
- * @param {Number} index The marker.
+ * @param {Number} index The marker index.
  */
-export function removeMarker(marker) {
-  return { type: types.MARKER_REMOVED, marker }
+export function removeMarker(index) {
+  return { type: types.MARKER_REMOVED, index }
 }
