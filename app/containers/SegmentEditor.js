@@ -8,13 +8,15 @@ import * as segmentEditorActions from '../actions/segmentEditor';
 // This page allows the user to draw out a favourite segment from a ride and rate it
 class SegmentEditor extends Component {
   render() {
-    const { defaultCenter, defaultZoom, actions } = this.props;
+    const { defaultCenter, defaultZoom, markers, actions } = this.props;
     return (
       <main className='flex-container fill-container'>
         <SegmentEditorMap
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
-          placeMarker={actions.placeMarker} />
+          markers={markers}
+          addMarker={actions.addMarker}
+          removeMarker={actions.removeMarker} />
         <SegmentEditorSidebar />
       </main>
     );
@@ -33,8 +35,9 @@ SegmentEditor.propTypes = {
 // Maps the state to the component properties
 function mapStateToProps(state) {
   return {
-    defaultCenter: state.segmentEditor.marker1,
-    defaultZoom: 13
+    defaultCenter: state.segmentEditor.defaultCenter,
+    defaultZoom: state.segmentEditor.defaultZoom,
+    markers: state.segmentEditor.markers
   }
 }
 

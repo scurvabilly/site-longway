@@ -1,1 +1,2 @@
 export const MARKER_PLACED = 'MARKER_PLACED';
+export const MARKER_REMOVED = 'MARKER_REMOVED';
