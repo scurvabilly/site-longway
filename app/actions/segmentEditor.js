@@ -3,10 +3,10 @@ import * as types from '../constants/ActionTypes';
 /**
  * Place a new marker on the map.
  *
- * @param {LatLng} pos The marker coordinates.
+ * @param {LatLng} position The marker coordinates.
  */
-export function addMarker(pos) {
-  return { type: types.MARKER_PLACED, pos }
+export function addMarker(position) {
+  return { type: types.MARKER_PLACED, position }
 }
 
 /**

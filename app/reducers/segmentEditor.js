@@ -16,7 +16,7 @@ export default function segmentEditor(state = initialState, action) {
           ...state.markers,
           {
             key: state.markers.length > 0 ? state.markers[state.markers.length - 1].key + 1 : 1,
-            position: action.pos
+            position: action.position
           }
         ]
       });
