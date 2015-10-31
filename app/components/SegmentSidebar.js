@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 'use strict';
 
-export default class HighlightSidebar extends Component {
+export default class SegmentSidebar extends Component {
   render() {
     return (
       <aside id='map-sidebar'>

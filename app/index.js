@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CreateHighlight from './containers/CreateHighlight';
+import CreateSegment from './containers/CreateSegment';
 
 'use strict';
 
 // Bundle CSS
 require('../css/app.css');
 
-ReactDOM.render(<CreateHighlight />, document.getElementById('CreateHighlight'));
+ReactDOM.render(<CreateSegment />, document.getElementById('CreateSegment'));

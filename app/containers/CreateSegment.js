@@ -1,6 +1,6 @@
 import React from 'react';
-import HighlightEditor from '../components/HighlightEditor';
-import HighlightSidebar from '../components/HighlightSidebar';
+import SegmentEditor from '../components/SegmentEditor';
+import SegmentSidebar from '../components/SegmentSidebar';
 
 'use strict';
 
@@ -8,8 +8,8 @@ export default React.createClass({
   render() {
     return (
       <main className='flex-container fill-container'>
-        <HighlightEditor />
-        <HighlightSidebar />
+        <SegmentEditor />
+        <SegmentSidebar />
       </main>
     );
   }

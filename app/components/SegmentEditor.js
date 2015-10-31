@@ -3,7 +3,7 @@ import {GoogleMap} from 'react-google-maps';
 
 'use strict';
 
-export default class HighlightEditor extends Component {
+export default class SegmentEditor extends Component {
   static defaultProps = {
     defaultCenter: {lat: -33.903267, lng: 151.149638}, // Home!
     defaultZoom: 13
