@@ -20,7 +20,7 @@
     "test:watch": "npm test -- --watch"
   },
   "devDependencies": {
-    "expect": "^1.12.2",
+    "chai": "^3.4.0",
     "mocha": "^2.3.3",
     "webpack-dev-server": "^1.12.1"
   }
