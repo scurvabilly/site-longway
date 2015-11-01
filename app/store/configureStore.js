@@ -1,8 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk'
 import rootReducer from '../reducers/index';
 
-// Create the store by applying an intitial state to the root reducer.
-// Note: Initial state can be nil, as the root reducer can supply defaults
+// Apply middleware to support lazy async actions
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
+// Creates the store with an optional initial state
 export default function configureStore(initialState) {
-  return createStore(rootReducer, initialState);
+  return createStoreWithMiddleware(rootReducer, initialState);
 };
