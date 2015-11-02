@@ -1,2 +1,2 @@
-export const MARKER_PLACED = 'MARKER_PLACED';
-export const MARKER_REMOVED = 'MARKER_REMOVED';
+export const PLACE_MARKER = 'PLACE_MARKER';
+export const REMOVE_MARKER = 'REMOVE_MARKER';

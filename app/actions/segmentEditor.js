@@ -14,7 +14,7 @@ export function addMarker(position) {
     }).catch(err => {
       console.log('Error: ' + err);
     }).then(() => {
-      dispatch({ type: types.MARKER_PLACED, position });
+      dispatch({ type: types.PLACE_MARKER, position });
     });
   };
 }
@@ -25,5 +25,5 @@ export function addMarker(position) {
  * @param {Number} index The marker index.
  */
 export function removeMarker(index) {
-  return { type: types.MARKER_REMOVED, index }
+  return { type: types.REMOVE_MARKER, index }
 }
