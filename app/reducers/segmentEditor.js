@@ -10,7 +10,7 @@ const initialState = {
 // Top-level reducer
 export default function segmentEditor(state = initialState, action) {
   switch (action.type) {
-    case types.PLACE_MARKER:
+    case types.MARKER_PLACED:
       return Object.assign({}, state, {
         markers: [
           ...state.markers,
@@ -22,7 +22,7 @@ export default function segmentEditor(state = initialState, action) {
       });
       return 
 
-    case types.REMOVE_MARKER:
+    case types.MARKER_REMOVED:
       return Object.assign({}, state, {
         markers: state.markers.filter((m, i) => i != action.index)
       });

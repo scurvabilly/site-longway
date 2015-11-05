@@ -1,5 +1,4 @@
-import fetch from 'isomorphic-fetch';
-import { encodeQueryString } from '../utils/url'
+import { fetchRoute } from '../middleware/api'
 import * as types from '../constants/ActionTypes';
 
 /**
@@ -9,8 +8,8 @@ import * as types from '../constants/ActionTypes';
  */
 export function addMarker(position) {
   return dispatch => {
-    dispatch({ type: types.PLACE_MARKER, position });
-    dispatch(fetchRoute());
+    dispatch({ type: types.MARKER_PLACED, position });
+    dispatch(updateRoute());
   };
 }
 
@@ -21,33 +20,26 @@ export function addMarker(position) {
  */
 export function removeMarker(index) {
   return dispatch => {
-    dispatch({ type: types.REMOVE_MARKER, index });
-    dispatch(fetchRoute());
+    dispatch({ type: types.MARKER_REMOVED, index });
+    dispatch(updateRoute());
   };
 }
 
 /**
- * Fetch the marked route.
+ * Updates the route using the placed markers as waypoints.
  */
-export function fetchRoute() {
+function updateRoute() {
   return (dispatch, getState) => {
-    // Construct the query string
-    const query = encodeQueryString({
-      key: '~APIKeyHere~',
-      interpolate: true,
-      path: getState().segmentEditor.markers.map(m => m.position.toUrlValue()).join('|')
-    });
+    // Notify that we're beginning the request
+    dispatch({ type: types.ROUTE_REQUESTED });
 
-    // Dispatch a 'requesting' action
-    // TODO
-
-    // Perform the request
-    return fetch('https://roads.googleapis.com/v1/snapToRoads?' + query).then(response => {
-      return response.json();
-    }).then(data => {
-      console.log(data);
-    }).catch(err => {
-      console.log('Error: ' + err);
-    });
+    return fetchRoute(getState().segmentEditor.markers)
+      .then(json => {
+        console.log('Success: ' + json);
+        dispatch({ type: types.ROUTE_RECEIVED, route: json });
+      }).catch(err => {
+        console.log('Err: ' + err);
+        dispatch({ type: types.ROUTE_FAILED });
+      });
   };
 }
