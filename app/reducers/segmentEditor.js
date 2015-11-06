@@ -28,6 +28,7 @@ export default function segmentEditor(state = initialState, action) {
       });
 
     default:
+      console.log(action);
       return state;
   }
 };

@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
-import { fetchRoute } from '../middleware/api'
+import { CALL_API } from 'redux-api-middleware';
 import * as types from '../constants/ActionTypes';
+import { encodeQueryString } from '../utils/url';
 
 /**
  * Place a new marker on the map.
@@ -31,16 +32,20 @@ export function removeMarker(index) {
  */
 function updateRoute() {
   return (dispatch, getState) => {
-    // Notify that we're beginning the request
-    dispatch(createAction(types.ROUTE_REQUESTED)());
-
-    return fetchRoute(getState().segmentEditor.markers)
-      .then(json => {
-        console.log('Success: ' + json);
-        dispatch(createAction(types.ROUTE_RECEIVED)(json));
-      }).catch(err => {
-        console.log('Err: ' + err);
-        dispatch(createAction(types.ROUTE_FAILED)());
-      });
+    // Build the querystring
+    const query = encodeQueryString({
+      key: '~APIKeyHere~',
+      interpolate: true,
+      path: getState().segmentEditor.markers.map(p => p.position.toUrlValue()).join('|')
+    });
+     
+    // Perform the API request. It will raise 'requested', followed by one of the latter two
+    dispatch({
+      [CALL_API]: {
+        endpoint: 'https://roads.googleapis.com/v1/snapToRoads?' + query,
+        method: 'GET',
+        types: [ types.ROUTE_REQUESTED, types.ROUTE_SUCCESS, types.ROUTE_FAILED ]
+      }
+    });
   };
 }
