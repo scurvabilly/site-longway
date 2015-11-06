@@ -1,4 +1,5 @@
 import expect from 'expect';
+import { createAction} from 'redux-actions';
 import segmentEditor from '../../app/reducers/segmentEditor'
 import * as types from '../../app/constants/ActionTypes'
 
@@ -13,7 +14,7 @@ describe('segment editor reducers', () => {
   })
 
   it('should handle MARKER_PLACED', () => {
-    const placed = segmentEditor(undefined, { type: types.MARKER_PLACED, position: { lat: 100, lng: -1.5 } });
+    const placed = segmentEditor(undefined, createAction(types.MARKER_PLACED)({ lat: 100, lng: -1.5 }));
     expect(placed.markers.length).toEqual(1);
     expect(placed.markers[0].position).toEqual({ lat: 100, lng: -1.5 });
   })
@@ -29,13 +30,13 @@ describe('segment editor reducers', () => {
       ]
     };
 
-    const removedOne = segmentEditor(initial, { type: types.MARKER_REMOVED, index: 1 });
+    const removedOne = segmentEditor(initial, createAction(types.MARKER_REMOVED)(1));
     expect(removedOne.markers.length).toEqual(2);
     expect(removedOne.markers[1]).toEqual({ key: 3, position: { lat: 5, lng: 6 } });
-    const removedTwo = segmentEditor(removedOne, { type: types.MARKER_REMOVED, index: 1 });
+    const removedTwo = segmentEditor(removedOne, createAction(types.MARKER_REMOVED)(1));
     expect(removedTwo.markers.length).toEqual(1);
     expect(removedTwo.markers[0]).toEqual({ key: 1, position: { lat: 1, lng: 2 } });
-    const removedAll = segmentEditor(removedTwo, { type: types.MARKER_REMOVED, index: 0 });
+    const removedAll = segmentEditor(removedTwo, createAction(types.MARKER_REMOVED)(0));
     expect(removedAll.markers.length).toEqual(0);
   })
 });

@@ -1,3 +1,4 @@
+import { createAction } from 'redux-actions';
 import { fetchRoute } from '../middleware/api'
 import * as types from '../constants/ActionTypes';
 
@@ -8,7 +9,7 @@ import * as types from '../constants/ActionTypes';
  */
 export function addMarker(position) {
   return dispatch => {
-    dispatch({ type: types.MARKER_PLACED, position });
+    dispatch(createAction(types.MARKER_PLACED)(position));
     dispatch(updateRoute());
   };
 }
@@ -20,7 +21,7 @@ export function addMarker(position) {
  */
 export function removeMarker(index) {
   return dispatch => {
-    dispatch({ type: types.MARKER_REMOVED, index });
+    dispatch(createAction(types.MARKER_REMOVED)(index));
     dispatch(updateRoute());
   };
 }
@@ -31,15 +32,15 @@ export function removeMarker(index) {
 function updateRoute() {
   return (dispatch, getState) => {
     // Notify that we're beginning the request
-    dispatch({ type: types.ROUTE_REQUESTED });
+    dispatch(createAction(types.ROUTE_REQUESTED)());
 
     return fetchRoute(getState().segmentEditor.markers)
       .then(json => {
         console.log('Success: ' + json);
-        dispatch({ type: types.ROUTE_RECEIVED, route: json });
+        dispatch(createAction(types.ROUTE_RECEIVED)(json));
       }).catch(err => {
         console.log('Err: ' + err);
-        dispatch({ type: types.ROUTE_FAILED });
+        dispatch(createAction(types.ROUTE_FAILED)());
       });
   };
 }

@@ -22,7 +22,7 @@ describe('segment editor actions', () => {
     f(dispatch, () => initialState);
     expect(dispatch).toHaveBeenCalledWith({
       type: types.MARKER_PLACED,
-      position: { lat: 123, lng: -321 }
+      payload: { lat: 123, lng: -321 }
     }).toHaveBeenCalledWith({
       type: types.ROUTE_REQUESTED
     });
@@ -36,7 +36,7 @@ describe('segment editor actions', () => {
     f(dispatch, () => initialState);
     expect(dispatch).toHaveBeenCalledWith({
       type: types.MARKER_REMOVED,
-      index: 3
+      payload: 3
     }).toHaveBeenCalledWith({
       type: types.ROUTE_REQUESTED
     });

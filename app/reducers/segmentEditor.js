@@ -16,7 +16,7 @@ export default function segmentEditor(state = initialState, action) {
           ...state.markers,
           {
             key: state.markers.length > 0 ? state.markers[state.markers.length - 1].key + 1 : 1,
-            position: action.position
+            position: action.payload
           }
         ]
       });
@@ -24,7 +24,7 @@ export default function segmentEditor(state = initialState, action) {
 
     case types.MARKER_REMOVED:
       return Object.assign({}, state, {
-        markers: state.markers.filter((m, i) => i != action.index)
+        markers: state.markers.filter((m, i) => i != action.payload)
       });
 
     default:
