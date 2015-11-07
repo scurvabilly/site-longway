@@ -5,6 +5,8 @@ const initialState = {
   defaultCenter: { lat: -33.903267, lng: 151.149638 }, // Home!
   defaultZoom: 13,
   markers: [],
+  route: [],
+  isRouting: false
 };
 
 // Top-level reducer
@@ -20,15 +22,25 @@ export default function segmentEditor(state = initialState, action) {
           }
         ]
       });
-      return 
 
     case types.MARKER_REMOVED:
       return Object.assign({}, state, {
         markers: state.markers.filter((m, i) => i != action.payload)
       });
 
+    case types.ROUTE_REQUESTED:
+      return Object.assign({}, state, { isRouting: true });
+
+    case types.ROUTE_SUCCEEDED:
+      return Object.assign({}, state, {
+        isRouting: false,
+        route: action.payload.snappedPoints.map(p => ({ lat: p.location.latitude, lng: p.location.longitude }))
+      });
+
+    case types.ROUTE_FAILED:
+      return Object.assign({}, state, { isRouting: false });
+
     default:
-      console.log(action);
       return state;
   }
 };

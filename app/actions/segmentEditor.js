@@ -44,7 +44,7 @@ function updateRoute() {
       [CALL_API]: {
         endpoint: 'https://roads.googleapis.com/v1/snapToRoads?' + query,
         method: 'GET',
-        types: [ types.ROUTE_REQUESTED, types.ROUTE_SUCCESS, types.ROUTE_FAILED ]
+        types: [ types.ROUTE_REQUESTED, types.ROUTE_SUCCEEDED, types.ROUTE_FAILED ]
       }
     });
   };
