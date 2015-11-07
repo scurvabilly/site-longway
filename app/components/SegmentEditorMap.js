@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Loader from 'react-loader';
 import { GoogleMap, Marker, Polyline } from 'react-google-maps';
 import classNames from 'classnames';
 
@@ -6,10 +7,6 @@ import classNames from 'classnames';
 class SegmentEditorMap extends Component {
   render() {
     const { defaultCenter, defaultZoom, markers, route, isRouting, addMarker, removeMarker } = this.props;
-    const spinClass = classNames({
-      'spinner': true,
-      'hidden': !isRouting
-    });
     return (
       <section className='fill-container'>
         <GoogleMap
@@ -17,11 +14,19 @@ class SegmentEditorMap extends Component {
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
           onClick={e => addMarker(e.latLng)}>
+          <Loader
+            className='spinner'
+            loaded={!isRouting}
+            length={0}
+            lines={12}
+            radius={10}
+            opacity={0.2}
+            trail={40} />
           <Polyline
             path={route}
             strokeColor='#000000'
-            strokeOpacity='1.0'
-            strokeWeight='2' />
+            strokeOpacity={1.0}
+            strokeWeight={2} />
           {
             markers.map((marker, i) => {
               return (
@@ -32,7 +37,6 @@ class SegmentEditorMap extends Component {
             })
           }
         </GoogleMap>
-        <div className={spinClass} />
       </section>
     );
   }
