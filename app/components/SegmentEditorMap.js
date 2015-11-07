@@ -7,6 +7,11 @@ import classNames from 'classnames';
 class SegmentEditorMap extends Component {
   render() {
     const { defaultCenter, defaultZoom, markers, route, isRouting, addMarker, removeMarker } = this.props;
+    const lineOptions = {
+      strokeColor: '#0066FF',
+      strokeOpacity: 0.7,
+      strokeWeight: 6
+    };
     return (
       <section className='fill-container'>
         <GoogleMap
@@ -14,6 +19,7 @@ class SegmentEditorMap extends Component {
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
           onClick={e => addMarker(e.latLng)}>
+          // Spinner
           <Loader
             className='spinner'
             loaded={!isRouting}
@@ -22,11 +28,11 @@ class SegmentEditorMap extends Component {
             radius={10}
             opacity={0.2}
             trail={40} />
-          <Polyline
-            path={route}
-            strokeColor='#000000'
-            strokeOpacity={1.0}
-            strokeWeight={2} />
+
+          // The route
+          <Polyline path={route} options={lineOptions} />
+
+          // The markers
           {
             markers.map((marker, i) => {
               return (
