@@ -40,7 +40,6 @@ class SegmentEditorMap extends Component {
           defaultZoom={defaultZoom}
           options={mapOptions}
           onClick={e => addMarker(e.latLng)}>
-          // Spinner
           <Loader
             className='spinner'
             loaded={!isRouting}
@@ -49,11 +48,7 @@ class SegmentEditorMap extends Component {
             radius={10}
             opacity={0.2}
             trail={40} />
-
-          // The route
           <Polyline path={route} options={lineOptions} />
-
-          // The markers
           {
             markers.map((marker, i) => {
               return (
