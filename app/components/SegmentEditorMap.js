@@ -3,21 +3,35 @@ import Loader from 'react-loader';
 import { GoogleMap, Marker, Polyline } from 'react-google-maps';
 import classNames from 'classnames';
 
+// Remove unnecessary controls
+const mapOptions = {
+  disableDefaultUI: true,
+  mapTypeControl: true,
+  scaleControl: true,
+  zoomControl: true
+};
+
+// Blue semi-opaque line
+const lineOptions = {
+  strokeColor: '#0066FF',
+  strokeOpacity: 0.7,
+  strokeWeight: 6
+};
+
+// Blue circle
+const markerIcon = {
+  path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
+  fillColor: '#468CF4',
+  fillOpacity: 1,
+  anchor: new google.maps.Point(0,0),
+  strokeWeight: 0,
+  scale: 0.5
+};
+
 // The map upon which the user can draw out a favourite segment of their ride
 class SegmentEditorMap extends Component {
   render() {
     const { defaultCenter, defaultZoom, markers, route, isRouting, addMarker, removeMarker } = this.props;
-    const mapOptions = {
-      disableDefaultUI: true,
-      mapTypeControl: true,
-      scaleControl: true,
-      zoomControl: true
-    };
-    const lineOptions = {
-      strokeColor: '#0066FF',
-      strokeOpacity: 0.7,
-      strokeWeight: 6
-    };
     return (
       <section className='fill-container'>
         <GoogleMap
@@ -45,6 +59,7 @@ class SegmentEditorMap extends Component {
               return (
                 <Marker
                   {...marker}
+                  icon={markerIcon}
                   onRightclick={() => removeMarker(i)} />
               );
             })
