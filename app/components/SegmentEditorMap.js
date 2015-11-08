@@ -7,6 +7,12 @@ import classNames from 'classnames';
 class SegmentEditorMap extends Component {
   render() {
     const { defaultCenter, defaultZoom, markers, route, isRouting, addMarker, removeMarker } = this.props;
+    const mapOptions = {
+      disableDefaultUI: true,
+      mapTypeControl: true,
+      scaleControl: true,
+      zoomControl: true
+    };
     const lineOptions = {
       strokeColor: '#0066FF',
       strokeOpacity: 0.7,
@@ -18,6 +24,7 @@ class SegmentEditorMap extends Component {
           containerProps={{ className: 'fill-container' }}
           defaultCenter={defaultCenter}
           defaultZoom={defaultZoom}
+          options={mapOptions}
           onClick={e => addMarker(e.latLng)}>
           // Spinner
           <Loader
