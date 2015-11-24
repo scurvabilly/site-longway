@@ -25,7 +25,7 @@ const markerIcon = {
   fillOpacity: 1,
   anchor: new google.maps.Point(0,0),
   strokeWeight: 0,
-  scale: 0.5
+  scale: 0.4
 };
 
 // The map upon which the user can draw out a favourite segment of their ride
