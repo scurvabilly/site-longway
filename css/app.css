@@ -25,4 +25,6 @@ html, body {
 #map-sidebar {
   flex: 0 0 250px;
   background: orange;
+  z-index: 1;
+  box-shadow: -4px 0px 10px #999;
 }
